@@ -6,4 +6,3 @@ npm i -g npm@9.6.2
 ## Executar o projeto (inciar servidor)
 
 npm run dev
-bbb
