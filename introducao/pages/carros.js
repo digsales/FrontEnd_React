@@ -9,57 +9,63 @@ import Col from "react-bootstrap/Col";
 const carros = () => {
   const carros = [
     {
-      marca: "Honda",
-      modelo: "Civic",
-      ano: 2015,
-      cor: "branco",
-      foto: "https://carrosdointerior.com.br/dist/img/anuncio/f54b4b2cc5b8be95df3779cf936671c8.jpg",
+      marca: "Chevrolet",
+      modelo: "Opala",
+      ano: 1971,
+      cor: "Verde",
+      foto: "https://quatrorodas.abril.com.br/wp-content/uploads/2018/11/chr5804-cr2-1-e1637378133536.jpg?quality=70&strip=info",
     },
     {
-      marca: "Hyundai",
-      modelo: "Tucson",
-      ano: 2012,
-      cor: "prata",
-      foto: "https://img2.icarros.com/dbimg/galeriaimgmodelo/2/296_1.jpg",
+      marca: "Volkswagen",
+      modelo: "Fusca",
+      ano: 1945,
+      cor: "Preto",
+      foto: "https://media.gazetadopovo.com.br/2019/07/11130451/939736ae3457783d8d736d90b47ad623-full-660x372.jpeg",
+    },
+    {
+      marca: "Volkswagen",
+      modelo: "Brasília",
+      ano: 1978,
+      cor: "Branco",
+      foto: "https://motortudo.com/wp-content/uploads/2021/01/VW-Brasilia-1978-carros-populares-antigos-1.jpg",
     },
     {
       marca: "Chevrolet",
-      modelo: "Celta",
-      ano: 2002,
-      cor: "vermelho",
-      foto: "https://cdn.grupolance.com.br/batches/8f/19257/72cff3911efd5e4120d2c065122fc47d.jpg",
+      modelo: "Corvette",
+      ano: 1975,
+      cor: "Branco",
+      foto: "https://hips.hearstapps.com/hmg-prod/amv-prod-cad-assets/images/03q4/267415/corvette-chronology-1970s-feature-car-and-driver-photo-195961-s-original.jpg?fill=2:1&resize=1200:*",
     },
     {
-      marca: "Fiat",
-      modelo: "Tempra",
-      ano: 2000,
-      cor: "vinho",
-      foto: "https://upload.wikimedia.org/wikipedia/commons/0/06/Fiat_Tempra_berlina.jpg",
+      marca: "Chevrolet",
+      modelo: "Camaro",
+      ano: 1970,
+      cor: "Azul",
+      foto: "https://s2.glbimg.com/xsFlq3NqFH1rQmD7pXf1Dqz_PVw=/0x0:620x400/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_cf9d035bf26b4646b105bd958f32089d/internal_photos/bs/2020/S/g/2jr3iDThu3mZXAcB8d3A/2016-03-24-chevrolet-1970-camaro-rs-with-supercharged-lt4-concept-2015-1600x1200-wallpaper-01.png",
     },
     {
-      marca: "Fiat",
-      modelo: "Marea",
-      ano: 2001,
-      cor: "prata",
-      foto: "https://uploads.vrum.com.br/2022/11/c246568a-fiat-marea-2.0-modelo-2001-prata-de-frente-no-estudio.jpg",
-    },
-    {
-      marca: "Fiat",
-      modelo: "Doblo",
-      ano: 2010,
-      cor: "branco",
-      foto: "https://img1.icarros.com/dbimg/imgmodelo/4/1103_5.jpg",
+      marca: "Dodge",
+      modelo: "Challenger",
+      ano: 1969,
+      cor: "Laranja",
+      foto: "https://p.turbosquid.com/ts-thumb/f3/A14R57/9U8aRi5E/1thg/jpg/1600495112/600x600/fit_q87/b38a44cdbb7aaa986264342557576037adfea4e2/1thg.jpg",
     },
   ];
   return (
-    <Pagina titulo="Objetos">
-      <Row>
+    <Pagina titulo="Carros">
+      <Row className="mb-5">
         {carros.map((carro) => (
-          <Col md={3}>
-            <Card>
-              <Card.Img variant="top" src={carro.foto} />
+          <Col md={3} className="mb-4">
+            <Card className="mb-3 col-12 row-3">
+              <Card.Img
+                variant="top"
+                src={carro.foto}
+                style={{ width: 259, height: 150 }}
+              />
               <Card.Body>
-                <Card.Title>{carro.modelo}</Card.Title>
+                <Card.Title>
+                  {carro.marca} - {carro.modelo}
+                </Card.Title>
                 <Card.Text>
                   Ano: <strong>{carro.ano}</strong>
                 </Card.Text>
