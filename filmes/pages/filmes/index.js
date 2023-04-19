@@ -10,6 +10,7 @@ import {
   Popover,
   OverlayTrigger,
 } from "react-bootstrap";
+import Link from "next/link";
 
 const index = () => {
   const [filmes, setFilmes] = useState([]);
@@ -45,7 +46,7 @@ const index = () => {
                     {new Date(item.release_date).toLocaleDateString()}
                   </strong>
                 </Card.Text>
-                <OverlayTrigger
+                {/* <OverlayTrigger
                   trigger="click"
                   placement="right"
                   overlay={
@@ -56,7 +57,10 @@ const index = () => {
                   }
                 >
                   <Button variant="primary">Detalhes</Button>
-                </OverlayTrigger>
+                </OverlayTrigger> */}
+                <Link href={"/filmes/" + item.id} className="btn btn-danger">
+                  Detalhes
+                </Link>
               </Card.Body>
             </Card>
           </Col>
