@@ -2,14 +2,7 @@ import React, { useEffect, useState } from "react";
 import Pagina from "../../components/Pagina";
 import "bootstrap/dist/css/bootstrap.min.css";
 import apiFilmes from "../../services/apiFilmes";
-import {
-  Row,
-  Col,
-  Card,
-  Button,
-  Popover,
-  OverlayTrigger,
-} from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 import Link from "next/link";
 
 const index = () => {
@@ -35,7 +28,7 @@ const index = () => {
             <Card>
               <Card.Img
                 variant="top"
-                src={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500/${item.backdrop_path}`}
                 alt={item.title}
               />
               <Card.Body>
