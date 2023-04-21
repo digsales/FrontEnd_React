@@ -2,8 +2,9 @@ import React from "react";
 import { Card, Col, Row } from "react-bootstrap";
 import Pagina from "../../components/Pagina";
 import apiFilmes from "../../services/apiFilmes";
+import Link from "next/link";
 
-const Detalhes = ({ filme }) => {
+const Detalhes = ({ filme, atores }) => {
   return (
     <Pagina titulo={filme.title}>
       <Row>
@@ -17,7 +18,7 @@ const Detalhes = ({ filme }) => {
         <Col md={9}>
           <p>
             <strong>Data de Lançamento: </strong>
-            {filme.release_date.replaceAll("-", "/")}
+            {new Date(filme.release_date).toLocaleDateString()}
           </p>
           <p>
             <strong>Orçamento: </strong>
@@ -43,18 +44,30 @@ const Detalhes = ({ filme }) => {
         </Col>
       </Row>
       <p>
-        <strong>Elenco:</strong>
+        <strong>Elenco</strong>
       </p>
-      <ul>
-        {filme.crew.map((item) => (
-          <li>
-            <Card.Img
-              variant="top"
-              src={`https://image.tmdb.org/t/p/w500/${item.profile_path}`}
-            />
-          </li>
+      <br />
+      <Row>
+        {atores.map((ator) => (
+          <Col key={ator.id} md={3} className="my-3">
+            <Link
+              href={`../ator/${ator.id}`}
+              style={{ textDecoration: "none" }}
+              className="text-black"
+            >
+              <Card className="p-1">
+                <Card.Img
+                  variant="top"
+                  src={`https://image.tmdb.org/t/p/w500/${ator.profile_path}`}
+                />
+                <Card.Title>
+                  <em>{ator.name}</em>
+                </Card.Title>
+              </Card>
+            </Link>
+          </Col>
         ))}
-      </ul>
+      </Row>
     </Pagina>
   );
 };
@@ -65,10 +78,12 @@ export async function getServerSideProps(context) {
   const id = context.params.id;
 
   const resultado = await apiFilmes.get(`/movie/${id}?language=pt-BR`);
+  const res = await apiFilmes.get(`/movie/${id}/credits?language=pt-BR`);
 
   const filme = await resultado.data;
-  const generos = filme.genres;
+  const generos = await filme.genres;
+  const atores = await res.data.cast;
   return {
-    props: { filme, generos }, // will be passed to the page component as props
+    props: { filme, generos, atores }, // will be passed to the page component as props
   };
 }
