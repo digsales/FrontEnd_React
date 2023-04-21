@@ -43,9 +43,9 @@ const Detalhes = ({ filme, atores }) => {
           <p>{filme.overview}</p>
         </Col>
       </Row>
-      <p>
+      <h1 style={{ marginTop: 30 }}>
         <strong>Elenco</strong>
-      </p>
+      </h1>
       <br />
       <Row>
         {atores.map((ator) => (
