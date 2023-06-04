@@ -2,22 +2,34 @@ import Pagina from "@/components/Pagina";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { BsArrowLeftCircleFill, BsCheck2 } from "react-icons/bs";
 
 const form = () => {
-  const { push } = useRouter();
-  const { register, handleSubmit } = useForm();
+  const { push, query } = useRouter();
+  const { register, handleSubmit, setValue } = useForm();
+
+  useEffect(() => {
+    if (query.id) {
+      axios.get(`/api/cursos/${query.id}`).then((res) => {
+        const disciplina = res.data;
+
+        for (let atributo in disciplina) {
+          setValue(atributo, disciplina[atributo]);
+        }
+      });
+    }
+  }, [query.id]);
 
   function salvar(dados) {
-    axios.post("/api/cursos", dados);
+    axios.put(`/api/cursos/${dados.id}`, dados);
     push("/cursos");
   }
 
   return (
-    <Pagina titulo="Cursos">
+    <Pagina titulo="Curso">
       <Form>
         <Form.Group className="mb-3" controlId="nome">
           <Form.Label>Nome: </Form.Label>
@@ -31,7 +43,7 @@ const form = () => {
 
         <Form.Group className="mb-3" controlId="modalidade">
           <Form.Label>Modalidade: </Form.Label>
-          <Form.Control type="text" {...register("modalidade  ")} />
+          <Form.Control type="text" {...register("modalidade")} />
         </Form.Group>
 
         <div className="text-center">
@@ -39,7 +51,7 @@ const form = () => {
             <BsCheck2 className="me-1" />
             Salvar
           </Button>
-          <Link href={"/cursos"} className="ms-2 btn btn-danger">
+          <Link href={"/semestres"} className="ms-2 btn btn-danger">
             <BsArrowLeftCircleFill className="me-1" />
             Voltar
           </Link>
