@@ -4,11 +4,7 @@ export default function Document() {
   return (
     <Html lang="pt-br">
       <Head />
-      <title>Acadêmico</title>
-      <link
-        rel="icon"
-        href="https://e7.pngegg.com/pngimages/326/401/png-clipart-graduation-ceremony-square-academic-cap-computer-icons-academic-degree-cap-blue-angle.png"
-      />
+      <title>Atividade 8</title>
       <body>
         <Main />
         <NextScript />
